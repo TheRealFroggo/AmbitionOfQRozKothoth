@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         float XMovement = Input.GetAxis("Horizontal") * m_Speed * Time.deltaTime;
-        transform.position += new Vector3(XMovement, 0,0);
+        float YMovement = Input.GetAxis("Vertical") * m_Speed * Time.deltaTime;
+        transform.position += new Vector3(XMovement, YMovement, 0);
     }
 }
