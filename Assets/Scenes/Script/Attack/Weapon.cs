@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public float DistanceScale;
     public float MaxDistance;
+    public Projectile WeaponProjectile;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,10 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Input.GetMouseButtonDown(0))
+        {
+            PrimaryAttack();
+        }
         
     }
 
@@ -64,6 +68,16 @@ public class Weapon : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipY = true;
         }
+    }
+
+    private void PrimaryAttack()
+    {
+        Projectile Bullet = Instantiate<Projectile>(WeaponProjectile);
+
+        Bullet.transform.position = transform.position;
+        Bullet.transform.rotation = transform.rotation;
+
+        Bullet.Direction = this.transform.right;
     }
 }
 
