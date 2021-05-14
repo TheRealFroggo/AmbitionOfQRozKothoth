@@ -95,3 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbadf037eab3d746b44c31e64b2a4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DistanceScale: 0
+  MaxDistance: 0
+  WeaponProjectile: {fileID: 0}

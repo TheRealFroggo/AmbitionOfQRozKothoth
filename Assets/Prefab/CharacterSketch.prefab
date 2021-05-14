@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Speed: 5
   m_Health: 10
   MaxHealth: 10
+  FlickSpeed: 0
 --- !u!58 &947009498
 CircleCollider2D:
   m_ObjectHideFlags: 0
