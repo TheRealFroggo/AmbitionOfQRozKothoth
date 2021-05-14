@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour ,IHealthInterface<int>
     public float m_Speed;
     public int m_Health;
     public int MaxHealth;
+    public float FlickSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -17,13 +18,20 @@ public class PlayerMovement : MonoBehaviour ,IHealthInterface<int>
     // Update is called once per frame
     void Update()
     {
-        
+        m_Time += Time.deltaTime * FlickSpeed;
+
+        Debug.Log(m_Time);
+
+        Material SpriteMaterial = GetComponent<Renderer>().material;
+
+        SpriteMaterial.SetFloat("Vector1_43bcc52744ed407a817479d682955a35", m_Time);
+
     }
 
     void FixedUpdate()
     {
-        float XMovement = Input.GetAxis("Horizontal") * m_Speed * Time.deltaTime;
-        float YMovement = Input.GetAxis("Vertical") * m_Speed * Time.deltaTime;
+        float XMovement = Input.GetAxis("Horizontal") * m_Speed * Time.fixedDeltaTime;
+        float YMovement = Input.GetAxis("Vertical") * m_Speed * Time.fixedDeltaTime;
         transform.position += new Vector3(XMovement, YMovement, 0);
     }
 
@@ -47,4 +55,6 @@ public class PlayerMovement : MonoBehaviour ,IHealthInterface<int>
     {
         Object.Destroy(gameObject);
     }
+
+    float m_Time = 0;
 }

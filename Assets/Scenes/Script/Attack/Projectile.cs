@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public float ProjectileSpeed;
 
     public float Lifetime;
+    public int Damage;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class Projectile : MonoBehaviour
         IHealthInterface<int> HealthInterface = OtherObject.gameObject.GetComponent<IHealthInterface<int>>();
         if(HealthInterface != null)
         {
-            HealthInterface.TakeDamage(5);
+            HealthInterface.TakeDamage(Damage);
         }
         Destroy(gameObject);
     }
