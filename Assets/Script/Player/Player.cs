@@ -9,13 +9,13 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
     public int MaxHealth;
     public float FlickSpeed;
 
-    // Start is called before the first frame update
+    float m_Time = 0;
+    float m_RotTime = 0;
+
     void Start()
     {
         m_Health = MaxHealth;
     }
-
-    // Update is called once per frame
     void Update()
     {
         m_Time += Time.deltaTime * FlickSpeed;
@@ -30,15 +30,24 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
     {
         float XMovement = Input.GetAxis("Horizontal") * m_Speed;
         float YMovement = Input.GetAxis("Vertical") * m_Speed;
-        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = new Vector2(XMovement, YMovement);
+        if (XMovement + YMovement != 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, Mathf.Sin(m_RotTime * 10) * 10);
+            m_RotTime += Time.fixedDeltaTime;
+        }
+        else
+        {
+            m_RotTime = 0;
+            transform.rotation = Quaternion.identity;
+        }
+        transform.position += new Vector3(XMovement, YMovement, 0);
     }
 
     public void TakeDamage(int DamageTaken)
     {
         m_Health -= DamageTaken;
 
-        if(m_Health <= 0)
+        if (m_Health <= 0)
         {
             Dead();
         }
@@ -50,10 +59,9 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
 
         m_Health = Mathf.Clamp(m_Health, 0, m_Health);
     }
+
     public void Dead()
     {
         Object.Destroy(gameObject);
     }
-
-    float m_Time = 0;
 }

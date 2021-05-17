@@ -70,9 +70,9 @@ public class Weapon : MonoBehaviour
 
     public void PrimaryAttack()
     {
-        Projectile Bullet = Instantiate<Projectile>(WeaponProjectile);
+        Projectile Bullet = Instantiate<Projectile>(WeaponProjectile);        
 
-        Bullet.transform.position = transform.position;
+        Bullet.transform.position = transform.GetChild(0).transform.position;
         Bullet.transform.rotation = transform.rotation;
 
         Bullet.Direction = this.transform.right;
