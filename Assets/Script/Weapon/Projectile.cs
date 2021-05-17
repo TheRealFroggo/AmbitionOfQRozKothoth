@@ -32,13 +32,30 @@ public class Projectile : MonoBehaviour
         transform.position = GoalPos;
     }
 
-    private void OnCollisionEnter2D(Collision2D OtherObject)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        IHealthInterface<int> HealthInterface = OtherObject.gameObject.GetComponent<IHealthInterface<int>>();
+        IHealthInterface<int> HealthInterface = collision.gameObject.GetComponent<IHealthInterface<int>>();
         if(HealthInterface != null)
         {
             HealthInterface.TakeDamage(Damage);
         }
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IHealthInterface<int> HealthInterface = collision.gameObject.GetComponent<IHealthInterface<int>>();
+        if (HealthInterface != null)
+        {
+            HealthInterface.TakeDamage(Damage);
+        }
+
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if(enemy)
+        {
+            enemy.TargetPlayer = Owner;
+        }
+
         Destroy(gameObject);
     }
 
@@ -51,4 +68,6 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public Player Owner { get; set; }
 }

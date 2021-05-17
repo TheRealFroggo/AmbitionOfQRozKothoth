@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
-  - 
+  - PlayerProjectile
+  - EnemyProjectile
+  - Sensor
   - 
   - 
   - 

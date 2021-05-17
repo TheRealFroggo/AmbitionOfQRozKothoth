@@ -17,16 +17,16 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            PrimaryAttack();
-        }
         
     }
 
     private void FixedUpdate()
     {
+        FollowCursor();
+    }
 
+    private void FollowCursor()
+    {
         GameObject Player = transform.parent.gameObject;
         Camera m_Camera = Camera.main;
 
@@ -36,10 +36,8 @@ public class Weapon : MonoBehaviour
         Vector3 mousePos3D = m_Camera.ScreenToWorldPoint(mousePos);
 
         MoveWeapon(mousePos3D, playerPos);
-
         RotateWeapon(mousePos3D, playerPos);
     }
-
     private void MoveWeapon(Vector3 MousePos, Vector3 PlayerPos)
     {
         Vector2 direction = (MousePos - PlayerPos) / DistanceScale;
@@ -70,7 +68,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void PrimaryAttack()
+    public void PrimaryAttack()
     {
         Projectile Bullet = Instantiate<Projectile>(WeaponProjectile);
 
@@ -78,6 +76,10 @@ public class Weapon : MonoBehaviour
         Bullet.transform.rotation = transform.rotation;
 
         Bullet.Direction = this.transform.right;
+
+        GameObject Wielder = transform.parent.gameObject;
+
+        Bullet.Owner = Wielder.GetComponent<Player>();
     }
 }
 

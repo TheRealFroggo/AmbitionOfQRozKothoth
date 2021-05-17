@@ -11,10 +11,12 @@ GameObject:
   - component: {fileID: 1382334069492111805}
   - component: {fileID: 1382334069492111804}
   - component: {fileID: 1382334069492111778}
+  - component: {fileID: -4657137511008477354}
   - component: {fileID: 947009498}
   - component: {fileID: 947009499}
-  m_Layer: 0
-  m_Name: CharacterSketch
+  - component: {fileID: 947009504}
+  m_Layer: 6
+  m_Name: Sniper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,10 +74,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1648492423
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 673760baf40773b43b9f2f20485deb4a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4addffb8de15db04b8fd5bcf2adddfc1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,9 +101,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Speed: 5
-  m_Health: 10
+  m_Health: 0
   MaxHealth: 10
-  FlickSpeed: 0
+  FlickSpeed: 7
+--- !u!114 &-4657137511008477354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382334069492111807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd09a3d62a07334ebaae9ebca71fdb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PrimaryAbility: {fileID: 11400000, guid: 3b1f0662bd6e80a4eb56d5bc2b9bcd2e, type: 2}
+  SecondaryAbility: {fileID: 11400000, guid: 29198a315061b97428e5f8a95c2d4c60, type: 2}
 --- !u!58 &947009498
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -112,10 +128,10 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.07, y: -0.64}
+  m_Offset: {x: 0, y: -0.64}
   serializedVersion: 2
   m_Radius: 0.28
 --- !u!61 &947009499
@@ -128,14 +144,14 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08, y: -0.1}
+  m_Offset: {x: 0, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1, y: 1.625}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -144,6 +160,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1.55}
   m_EdgeRadius: 0
+--- !u!50 &947009504
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382334069492111807}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &1382334070479311998
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,7 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1382334070479311999}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4931047208723879326, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
       propertyPath: MaxDistance
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4931047208723879326, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
       propertyPath: DistanceScale
@@ -203,11 +240,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8917980102729403300, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 8917980102729403300, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.295
       objectReference: {fileID: 0}
     - target: {fileID: 8917980102729403300, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -245,14 +282,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: RayGun
       objectReference: {fileID: 0}
+    - target: {fileID: 8917980102729403302, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8917980102729403303, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8917980102729403303, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
       propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917980102729403303, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
+      propertyPath: m_SortingLayer
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8917980102729403303, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1648492423
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917980102729403303, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71dbb7bc19668e141a671548e8aef89e, type: 3}
 --- !u!4 &1382334070432687796 stripped

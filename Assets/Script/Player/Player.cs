@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour ,IHealthInterface<int>
+public class Player : MonoBehaviour ,IHealthInterface<int>
 {
     public float m_Speed;
     public int m_Health;
@@ -20,8 +20,6 @@ public class PlayerMovement : MonoBehaviour ,IHealthInterface<int>
     {
         m_Time += Time.deltaTime * FlickSpeed;
 
-        Debug.Log(m_Time);
-
         Material SpriteMaterial = GetComponent<Renderer>().material;
 
         SpriteMaterial.SetFloat("Vector1_43bcc52744ed407a817479d682955a35", m_Time);
@@ -30,9 +28,10 @@ public class PlayerMovement : MonoBehaviour ,IHealthInterface<int>
 
     void FixedUpdate()
     {
-        float XMovement = Input.GetAxis("Horizontal") * m_Speed * Time.fixedDeltaTime;
-        float YMovement = Input.GetAxis("Vertical") * m_Speed * Time.fixedDeltaTime;
-        transform.position += new Vector3(XMovement, YMovement, 0);
+        float XMovement = Input.GetAxis("Horizontal") * m_Speed;
+        float YMovement = Input.GetAxis("Vertical") * m_Speed;
+        Rigidbody2D rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody.velocity = new Vector2(XMovement, YMovement);
     }
 
     public void TakeDamage(int DamageTaken)
