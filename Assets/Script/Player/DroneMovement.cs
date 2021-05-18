@@ -58,7 +58,7 @@ public class DroneMovement : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 LookAtDirection = mousePos - pos;
-        float Angle = Mathf.Atan2(LookAtDirection.x, LookAtDirection.y) * Mathf.Rad2Deg;
+        float Angle = Mathf.Atan2(LookAtDirection.x, LookAtDirection.y) * Mathf.Rad2Deg - 90;
         Quaternion rotation = Quaternion.AngleAxis(-Angle, Vector3.forward);
 
         transform.rotation = rotation;

@@ -87,9 +87,9 @@ public class Gun : MonoBehaviour
         Bullet.transform.position = transform.GetChild(0).transform.position;
 
         Vector3 rot = transform.rotation.eulerAngles;
-        rot += new Vector3(0, 0, 90);
+        rot += new Vector3(0, 0, 0);
         Bullet.transform.rotation = Quaternion.Euler(rot);
 
-        Bullet.Direction = transform.up;
+        Bullet.Direction = transform.right;
     }
 }
