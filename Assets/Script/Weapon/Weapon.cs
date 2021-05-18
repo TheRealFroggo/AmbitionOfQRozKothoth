@@ -6,6 +6,7 @@ public class Weapon : MonoBehaviour
 {
     public float DistanceScale;
     public float MaxDistance;
+
     public Projectile WeaponProjectile;
 
     // Start is called before the first frame update
@@ -70,7 +71,7 @@ public class Weapon : MonoBehaviour
 
     public void PrimaryAttack()
     {
-        Projectile Bullet = Instantiate<Projectile>(WeaponProjectile);        
+        Projectile Bullet = Instantiate(WeaponProjectile);        
 
         Bullet.transform.position = transform.GetChild(0).transform.position;
         Bullet.transform.rotation = transform.rotation;

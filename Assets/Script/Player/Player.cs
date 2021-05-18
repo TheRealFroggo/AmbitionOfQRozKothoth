@@ -40,7 +40,7 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
             m_RotTime = 0;
             transform.rotation = Quaternion.identity;
         }
-        transform.position += new Vector3(XMovement, YMovement, 0);
+        transform.position += new Vector3(XMovement, YMovement, 0) * Time.fixedDeltaTime;
     }
 
     public void TakeDamage(int DamageTaken)
