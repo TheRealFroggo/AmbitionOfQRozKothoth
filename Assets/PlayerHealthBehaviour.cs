@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarBehaviour : MonoBehaviour
+public class PlayerHealthBehaviour : MonoBehaviour
 {
-    public Slider HealthSlider;
-    public Vector3 Offset;
-
-    private void Update()
-    {
-        HealthSlider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + Offset);
-    }
+    private Slider HealthSlider;
 
     public void SetHealthValue(int value)
     {
+        if (!HealthSlider)
+        {
+            HealthSlider = GetComponent<Slider>();
+        }
         HealthSlider.value = value;
     }
 
     public void SetMaxHealthValue(int value)
     {
+        if (!HealthSlider)
+        {
+            HealthSlider = GetComponent<Slider>();
+        }
         HealthSlider.maxValue = value;
     }
 }

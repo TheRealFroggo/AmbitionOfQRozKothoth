@@ -10,11 +10,13 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
     public float FlickSpeed;
 
     float m_Time = 0;
-    float m_RotTime = 0;
+    public PlayerHealthBehaviour HealthBar;
 
     void Start()
     {
         m_Health = MaxHealth;
+        HealthBar.SetMaxHealthValue(MaxHealth);
+        HealthBar.SetHealthValue(m_Health);
     }
     void Update()
     {
@@ -30,16 +32,8 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
     {
         float XMovement = Input.GetAxis("Horizontal") * m_Speed;
         float YMovement = Input.GetAxis("Vertical") * m_Speed;
-        //if (XMovement + YMovement != 0)
-        //{
-        //    transform.rotation = Quaternion.Euler(0, 0, Mathf.Sin(m_RotTime * 10) * 10);
-        //    m_RotTime += Time.fixedDeltaTime;
-        //}
-        //else
-        //{
-        //    m_RotTime = 0;
-        //    transform.rotation = Quaternion.identity;
-        //}
+
+
         Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.velocity = new Vector2(XMovement, YMovement);
     }
@@ -47,6 +41,7 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
     public void TakeDamage(int DamageTaken)
     {
         m_Health -= DamageTaken;
+        HealthBar.SetHealthValue(m_Health);
 
         if (m_Health <= 0)
         {
@@ -58,11 +53,11 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
     {
         m_Health += HealAmount;
 
-        m_Health = Mathf.Clamp(m_Health, 0, m_Health);
+        m_Health = Mathf.Clamp(m_Health, 0, MaxHealth);
     }
 
     public void Dead()
     {
-        Object.Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6168443765794601362}
   - component: {fileID: 6168443765794601363}
   - component: {fileID: 6168443765794601388}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Drone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6168443766447358563}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Muzzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         IHealthInterface<int> HealthInterface = collision.gameObject.GetComponent<IHealthInterface<int>>();
-        if(HealthInterface != null)
+        if (HealthInterface != null)
         {
             HealthInterface.TakeDamage(Damage);
         }
@@ -51,9 +51,12 @@ public class Projectile : MonoBehaviour
         }
 
         Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-        if(enemy)
+        if (enemy)
         {
-            enemy.TargetPlayer = Owner;
+            if (Owner)
+            {
+                enemy.TargetPlayer = Owner;
+            }
         }
 
         Destroy(gameObject);
@@ -63,7 +66,7 @@ public class Projectile : MonoBehaviour
     {
         Lifetime -= Time.deltaTime;
 
-        if(Lifetime <= 0)
+        if (Lifetime <= 0)
         {
             Destroy(gameObject);
         }
