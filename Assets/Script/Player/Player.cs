@@ -30,17 +30,18 @@ public class Player : MonoBehaviour ,IHealthInterface<int>
     {
         float XMovement = Input.GetAxis("Horizontal") * m_Speed;
         float YMovement = Input.GetAxis("Vertical") * m_Speed;
-        if (XMovement + YMovement != 0)
-        {
-            transform.rotation = Quaternion.Euler(0, 0, Mathf.Sin(m_RotTime * 10) * 10);
-            m_RotTime += Time.fixedDeltaTime;
-        }
-        else
-        {
-            m_RotTime = 0;
-            transform.rotation = Quaternion.identity;
-        }
-        transform.position += new Vector3(XMovement, YMovement, 0);
+        //if (XMovement + YMovement != 0)
+        //{
+        //    transform.rotation = Quaternion.Euler(0, 0, Mathf.Sin(m_RotTime * 10) * 10);
+        //    m_RotTime += Time.fixedDeltaTime;
+        //}
+        //else
+        //{
+        //    m_RotTime = 0;
+        //    transform.rotation = Quaternion.identity;
+        //}
+        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.velocity = new Vector2(XMovement, YMovement);
     }
 
     public void TakeDamage(int DamageTaken)
