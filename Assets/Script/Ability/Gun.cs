@@ -13,6 +13,8 @@ public class Gun : MonoBehaviour
     }
 
     [Header("Attacking")]
+    [Tooltip("Does holding down the attack button continously fire")]
+    public bool isAutoFire;
     [Tooltip("Amount of shots fired per second")]
     public float FireRate;
     private float TimeBetweenShots;
@@ -42,9 +44,16 @@ public class Gun : MonoBehaviour
         switch (State)
         {
             case ActiveState.ready:
-                if (Input.GetMouseButton(0))
+                switch (isAutoFire)
                 {
-                    State = ActiveState.firing;
+                    case true:
+                        if (Input.GetMouseButton(0))
+                            State = ActiveState.firing;
+                        break;
+                    case false:
+                        if (Input.GetMouseButtonDown(0))
+                            State = ActiveState.firing;
+                        break;
                 }
                 break;
 
@@ -54,9 +63,7 @@ public class Gun : MonoBehaviour
                 SpawnProjectile();
 
                 if (CurrentShots <= 0)
-                {
                     State = ActiveState.reload;
-                }
                 break;
 
             case ActiveState.cooldown:
@@ -87,7 +94,6 @@ public class Gun : MonoBehaviour
         Bullet.transform.position = transform.GetChild(0).transform.position;
 
         Vector3 rot = transform.rotation.eulerAngles;
-        rot += new Vector3(0, 0, 0);
         Bullet.transform.rotation = Quaternion.Euler(rot);
 
         Bullet.Direction = transform.right;
